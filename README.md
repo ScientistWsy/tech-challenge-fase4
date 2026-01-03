@@ -1,5 +1,3 @@
-# Welcome to your Expo app 👋
-
 ## Get started
 
 1. Install dependencies
