@@ -15,3 +15,5 @@
    ```
 
 3. If Fail try the step 2 again 
+
+4. When run press 'w' to simulate the app in browser.
