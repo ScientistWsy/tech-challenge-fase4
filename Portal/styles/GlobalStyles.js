@@ -74,7 +74,7 @@ export const styles = StyleSheet.create({
     marginBottom: 8,
   },
   filtroButton: {
-    backgroundColor: "#444",
+    backgroundColor: "#007bff",
     paddingVertical: 10,
     borderRadius: 6,
     alignItems: "center",
@@ -131,5 +131,11 @@ export const styles = StyleSheet.create({
     color: "red",
     marginBottom: 12,
     textAlign: "center",
+  },
+  separator: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#000",
+    marginVertical: 16,
+    width: "90%",
   },
 });

@@ -73,21 +73,25 @@ export default function NewPostScreen() {
         <Text style={styles.title}>Novo Post</Text>
       </View>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Título"
-        value={titulo}
-        onChangeText={setTitulo}
-      />
+      <hr style={styles.separator} />
 
-      <TextInput
-        style={[styles.input, styles.textArea]}
-        placeholder="Descrição"
-        value={descricao}
-        onChangeText={setDescricao}
-        multiline
-        numberOfLines={4}
-      />
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder="Título"
+          value={titulo}
+          onChangeText={setTitulo}
+        />
+
+        <TextInput
+          style={[styles.input, styles.textArea]}
+          placeholder="Descrição"
+          value={descricao}
+          onChangeText={setDescricao}
+          multiline
+          numberOfLines={4}
+        />
+      </View>
 
       {loading ? (
         <ActivityIndicator size="large" />

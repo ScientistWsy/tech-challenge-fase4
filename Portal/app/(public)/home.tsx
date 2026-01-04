@@ -100,7 +100,7 @@ export default function Index() {
               pathname: "/visualizar/[id]",
               params: { id: item._id },
             })}
-            style={styles.card}
+            key={item._id}
           >
 
             <View style={styles.card}>

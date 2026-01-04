@@ -7,6 +7,7 @@ import {
   Text,
   TextInput,
   View,
+  TouchableOpacity,
 } from "react-native";
 
 import { styles } from "@/styles/GlobalStyles";
@@ -18,6 +19,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import api from "@/services/api";
 import { Comment } from "@/types/Comment";
 import { Post } from "@/types/Post";
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function PostScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -207,21 +209,26 @@ export default function PostScreen() {
         <Text style={styles.title}>Detalhes</Text>
       </View>
 
+      <hr style={styles.separator} />
+
       <View style={{ padding: 16 }}>
         {editandoPost ? (
           <>
-            <TextInput value={titulo} onChangeText={setTitulo} />
+            <TextInput style={styles.input} value={titulo} onChangeText={setTitulo} />
             <TextInput
+              style={styles.input}
               value={descricao}
               onChangeText={setDescricao}
               multiline
             />
-
-            <Button title="Salvar" onPress={handleUpdatePost} />
-            <Button
-              title="Cancelar"
-              onPress={() => setEditandoPost(false)}
-            />
+            <View style={{ flexDirection: 'row', gap: 8, marginBottom: 8 }}>
+              <TouchableOpacity onPress={handleUpdatePost} style={{ backgroundColor: 'green', padding: 8, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Salvar post">
+                <MaterialIcons name="check" size={18} color="white" />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => setEditandoPost(false)} style={{ backgroundColor: 'gray', padding: 8, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Cancelar edição">
+                <MaterialIcons name="close" size={18} color="white" />
+              </TouchableOpacity>
+            </View>
           </>
         ) : (
           <>
@@ -231,19 +238,16 @@ export default function PostScreen() {
             <Text style={{ marginVertical: 12 }}>
               {post.descricao}
             </Text>
-            <Text>Autor: {post.autor}</Text>
+            <Text style={{ marginBottom: 8 }}>Autor: {post.autor}</Text>
 
             {podeEditarPost && (
-              <View style={{ flexDirection: "row", gap: 8 }}>
-                <Button
-                  title="Editar"
-                  onPress={() => setEditandoPost(true)}
-                />
-                <Button
-                  title="Excluir"
-                  color="red"
-                  onPress={handleDeletePost}
-                />
+                <View style={{ flexDirection: "row", gap: 8 }}>
+                <TouchableOpacity onPress={() => setEditandoPost(true)} style={{ backgroundColor: '#1976d2', padding: 8, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Editar post">
+                  <MaterialIcons name="edit" size={20} color="white" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleDeletePost} style={{ backgroundColor: 'red', padding: 8, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Excluir post">
+                  <MaterialIcons name="delete" size={20} color="white" />
+                </TouchableOpacity>
               </View>
             )}
           </>
@@ -251,8 +255,9 @@ export default function PostScreen() {
 
         {/* Novo comentário */}
         <View style={{ marginTop: 24 }}>
-          <Text style={{ fontWeight: "bold" }}>Novo comentário</Text>
+          <Text style={{ fontWeight: "bold", marginBottom: 8 }}>Novo comentário</Text>
           <TextInput
+            style={styles.input}
             value={novoComentario}
             onChangeText={setNovoComentario}
             placeholder="Digite seu comentário"
@@ -264,14 +269,10 @@ export default function PostScreen() {
         <FlatList
           data={comments}
           keyExtractor={(item) => item._id}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <View
-              style={{
-                marginTop: 16,
-                padding: 12,
-                backgroundColor: "#f2f2f2",
-                borderRadius: 8,
-              }}
+              style={[styles.card, { marginTop: index == 0 ? 16 : 8 }]}
+              key={item._id}
             >
               <Text style={{ fontWeight: "bold" }}>
                 {item.usuario}
@@ -280,39 +281,35 @@ export default function PostScreen() {
               {comentarioEditando === item._id ? (
                 <>
                   <TextInput
+
+                    style={[{ marginVertical: 8 }, styles.input]}
                     value={textoComentarioEditado}
                     onChangeText={setTextoComentarioEditado}
                   />
-                  <Button
-                    title="Salvar"
-                    onPress={() =>
-                      handleUpdateComment(item._id)
-                    }
-                  />
+                  <View style={{ marginBottom: 8, flexDirection: 'row', gap: 8 }}>
+                    <TouchableOpacity onPress={() => handleUpdateComment(item._id)} style={{ backgroundColor: 'green', padding: 6, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Salvar comentário">
+                      <MaterialIcons name="check" size={16} color="white" />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { setComentarioEditando(null); setTextoComentarioEditado(''); }} style={{ backgroundColor: 'gray', padding: 6, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Cancelar edição comentário">
+                      <MaterialIcons name="close" size={16} color="white" />
+                    </TouchableOpacity>
+                  </View>
                 </>
               ) : (
-                <Text>{item.texto}</Text>
+                <Text style={{ marginBottom: 8 }}>{item.texto}</Text>
               )}
 
               <View style={{ flexDirection: "row", gap: 8 }}>
                 {podeEditarComentario(item.usuario) && (
-                  <Button
-                    title="Editar"
-                    onPress={() => {
-                      setComentarioEditando(item._id);
-                      setTextoComentarioEditado(item.texto);
-                    }}
-                  />
+                  <TouchableOpacity onPress={() => { setComentarioEditando(item._id); setTextoComentarioEditado(item.texto); }} style={{ backgroundColor: '#1976d2', padding: 6, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Editar comentário">
+                    <MaterialIcons name="edit" size={16} color="white" />
+                  </TouchableOpacity>
                 )}
 
                 {podeExcluirComentario(item.usuario) && (
-                  <Button
-                    title="Excluir"
-                    color="red"
-                    onPress={() =>
-                      handleDeleteComment(item._id)
-                    }
-                  />
+                  <TouchableOpacity onPress={() => handleDeleteComment(item._id)} style={{ backgroundColor: 'red', padding: 6, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Excluir comentário">
+                    <MaterialIcons name="delete" size={16} color="white" />
+                  </TouchableOpacity>
                 )}
               </View>
             </View>

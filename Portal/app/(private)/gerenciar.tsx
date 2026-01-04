@@ -83,7 +83,9 @@ export default function Gerenciar() {
         <Text style={styles.title}>Lista de Post</Text>
       </View>
 
-      <View style={styles.filtroContainer}>
+      <hr style={styles.separator}/>
+
+      <View style={[styles.filtroContainer, { marginTop: 16 }]}>
         <TextInput
           placeholder="Filtrar por título"
           value={titulo}
@@ -113,7 +115,6 @@ export default function Gerenciar() {
               pathname: "/editar/[id]",
               params: { id: item._id },
             })}
-            style={styles.card}
           >
 
             <View style={styles.card}>
