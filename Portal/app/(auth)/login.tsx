@@ -4,12 +4,12 @@ import { useState } from "react";
 import {
     ActivityIndicator,
     Button,
-    StyleSheet,
     Text,
     TextInput,
     View,
 } from "react-native";
 
+import { styles } from "@/styles/GlobalStyles"; 
 
 export default function LoginScreen() {
   const { signIn } = useAuth();
@@ -46,8 +46,8 @@ export default function LoginScreen() {
     <>
       <Stack.Screen options={{ title: "Login" }} />
 
-      <View style={styles.container}>
-        <Text style={styles.title}>Login</Text>
+      <View style={styles.containerlogin}>
+        <Text style={styles.titleLogin}>Login</Text>
 
         {error && <Text style={styles.error}>{error}</Text>}
 
@@ -78,28 +78,3 @@ export default function LoginScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    padding: 24,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 24,
-    textAlign: "center",
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 6,
-    padding: 12,
-    marginBottom: 12,
-  },
-  error: {
-    color: "red",
-    marginBottom: 12,
-    textAlign: "center",
-  },
-});

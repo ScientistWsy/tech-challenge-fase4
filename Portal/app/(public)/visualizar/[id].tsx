@@ -4,11 +4,11 @@ import {
   ActivityIndicator,
   Button,
   FlatList,
-  StyleSheet,
   Text,
   TextInput,
   View,
 } from "react-native";
+import { styles } from "@/styles/GlobalStyles";
 import Toast from "react-native-toast-message";
 
 import { MenuButton } from "@/components/MenuButton";
@@ -200,7 +200,7 @@ export default function PostPublicScreen() {
 
   return (
     <>
-      <View style={styles.header}>
+      <View style={styles.headerCenter}>
         <MenuButton />
         <Text style={styles.title}>Detalhes</Text>
       </View>
@@ -320,21 +320,3 @@ export default function PostPublicScreen() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    display: "flex",
-    flexDirection: "row",
-    padding: 16,
-    alignItems: "center",
-    gap: 8,
-  },
-  title: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    textAlign: "center",
-    fontSize: 20,
-    fontWeight: "bold",
-  }
-});
