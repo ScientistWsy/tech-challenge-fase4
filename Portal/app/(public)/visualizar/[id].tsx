@@ -4,11 +4,12 @@ import {
   ActivityIndicator,
   Button,
   FlatList,
-  StyleSheet,
   Text,
   TextInput,
   View,
+  TouchableOpacity,
 } from "react-native";
+import { styles } from "@/styles/GlobalStyles";
 import Toast from "react-native-toast-message";
 
 import { MenuButton } from "@/components/MenuButton";
@@ -16,6 +17,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import api from "@/services/api";
 import { Comment } from "@/types/Comment";
 import { Post } from "@/types/Post";
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function PostPublicScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -200,7 +202,7 @@ export default function PostPublicScreen() {
 
   return (
     <>
-      <View style={styles.header}>
+      <View style={styles.headerCenter}>
         <MenuButton />
         <Text style={styles.title}>Detalhes</Text>
       </View>
@@ -215,11 +217,14 @@ export default function PostPublicScreen() {
               multiline
             />
 
-            <Button title="Salvar" onPress={handleUpdatePost} />
-            <Button
-              title="Cancelar"
-              onPress={() => setEditandoPost(false)}
-            />
+            <View style={{ flexDirection: 'row', gap: 8, marginTop: 8 }}>
+              <TouchableOpacity onPress={handleUpdatePost} style={{ backgroundColor: 'green', padding: 8, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Salvar post">
+                <MaterialIcons name="check" size={18} color="white" />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => setEditandoPost(false)} style={{ backgroundColor: 'gray', padding: 8, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Cancelar edição">
+                <MaterialIcons name="close" size={18} color="white" />
+              </TouchableOpacity>
+            </View>
           </>
         ) : (
           <>
@@ -233,15 +238,12 @@ export default function PostPublicScreen() {
 
             {podeEditarPost && (
               <View style={{ flexDirection: "row", gap: 8 }}>
-                <Button
-                  title="Editar"
-                  onPress={() => setEditandoPost(true)}
-                />
-                <Button
-                  title="Excluir"
-                  color="red"
-                  onPress={handleDeletePost}
-                />
+                <TouchableOpacity onPress={() => setEditandoPost(true)} style={{ backgroundColor: '#1976d2', padding: 8, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Editar post">
+                  <MaterialIcons name="edit" size={20} color="white" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleDeletePost} style={{ backgroundColor: 'red', padding: 8, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Excluir post">
+                  <MaterialIcons name="delete" size={20} color="white" />
+                </TouchableOpacity>
               </View>
             )}
           </>
@@ -281,12 +283,14 @@ export default function PostPublicScreen() {
                     value={textoComentarioEditado}
                     onChangeText={setTextoComentarioEditado}
                   />
-                  <Button
-                    title="Salvar"
-                    onPress={() =>
-                      handleUpdateComment(item._id)
-                    }
-                  />
+                  <View style={{ flexDirection: 'row', gap: 8, marginTop: 8 }}>
+                    <TouchableOpacity onPress={() => handleUpdateComment(item._id)} style={{ backgroundColor: 'green', padding: 6, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Salvar comentário">
+                      <MaterialIcons name="check" size={16} color="white" />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { setComentarioEditando(null); setTextoComentarioEditado(''); }} style={{ backgroundColor: 'gray', padding: 6, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Cancelar edição comentário">
+                      <MaterialIcons name="close" size={16} color="white" />
+                    </TouchableOpacity>
+                  </View>
                 </>
               ) : (
                 <Text>{item.texto}</Text>
@@ -294,23 +298,15 @@ export default function PostPublicScreen() {
 
               <View style={{ flexDirection: "row", gap: 8 }}>
                 {podeEditarComentario(item.usuario) && (
-                  <Button
-                    title="Editar"
-                    onPress={() => {
-                      setComentarioEditando(item._id);
-                      setTextoComentarioEditado(item.texto);
-                    }}
-                  />
+                  <TouchableOpacity onPress={() => { setComentarioEditando(item._id); setTextoComentarioEditado(item.texto); }} style={{ backgroundColor: '#1976d2', padding: 6, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Editar comentário">
+                    <MaterialIcons name="edit" size={16} color="white" />
+                  </TouchableOpacity>
                 )}
 
                 {podeExcluirComentario(item.usuario) && (
-                  <Button
-                    title="Excluir"
-                    color="red"
-                    onPress={() =>
-                      handleDeleteComment(item._id)
-                    }
-                  />
+                  <TouchableOpacity onPress={() => handleDeleteComment(item._id)} style={{ backgroundColor: 'red', padding: 6, borderRadius: 6, alignItems: 'center', justifyContent: 'center' }} accessibilityLabel="Excluir comentário">
+                    <MaterialIcons name="delete" size={16} color="white" />
+                  </TouchableOpacity>
                 )}
               </View>
             </View>
@@ -320,21 +316,3 @@ export default function PostPublicScreen() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    display: "flex",
-    flexDirection: "row",
-    padding: 16,
-    alignItems: "center",
-    gap: 8,
-  },
-  title: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    textAlign: "center",
-    fontSize: 20,
-    fontWeight: "bold",
-  }
-});

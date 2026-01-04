@@ -4,11 +4,12 @@ import {
   ActivityIndicator,
   Alert,
   Button,
-  StyleSheet,
   Text,
   TextInput,
   View,
 } from "react-native";
+
+import { styles } from "@/styles/GlobalStyles";
 
 import { MenuButton } from "@/components/MenuButton";
 import { useAuth } from "@/contexts/AuthContext";
@@ -67,26 +68,30 @@ export default function NewPostScreen() {
 
   return (
     <View>
-      <View style={styles.header}>
+      <View style={styles.headerCenter}>
         <MenuButton />
         <Text style={styles.title}>Novo Post</Text>
       </View>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Título"
-        value={titulo}
-        onChangeText={setTitulo}
-      />
+      <hr style={styles.separator} />
 
-      <TextInput
-        style={[styles.input, styles.textArea]}
-        placeholder="Descrição"
-        value={descricao}
-        onChangeText={setDescricao}
-        multiline
-        numberOfLines={4}
-      />
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder="Título"
+          value={titulo}
+          onChangeText={setTitulo}
+        />
+
+        <TextInput
+          style={[styles.input, styles.textArea]}
+          placeholder="Descrição"
+          value={descricao}
+          onChangeText={setDescricao}
+          multiline
+          numberOfLines={4}
+        />
+      </View>
 
       {loading ? (
         <ActivityIndicator size="large" />
@@ -99,39 +104,3 @@ export default function NewPostScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  header: {
-    display: "flex",
-    flexDirection: "row",
-    padding: 16,
-    alignItems: "center",
-    gap: 8,
-  },
-  title: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    textAlign: "center",
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  container: {
-    padding: 16
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 6,
-    padding: 12,
-    marginBottom: 12,
-    marginHorizontal: 16
-  },
-  textArea: {
-    height: 100,
-    textAlignVertical: "top",
-  },
-  button: {
-    marginTop: 0,
-    margin: 16
-  }
-});

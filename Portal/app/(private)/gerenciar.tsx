@@ -3,11 +3,12 @@ import {
   ActivityIndicator,
   FlatList,
   Pressable,
-  StyleSheet,
   Text,
   TextInput,
   View
 } from "react-native";
+
+import { styles } from "@/styles/GlobalStyles";
 
 import { useNavigation } from "@react-navigation/native";
 import { router } from "expo-router";
@@ -77,12 +78,14 @@ export default function Gerenciar() {
 
   return (
     <>
-      <View style={styles.header}>
+      <View style={styles.headerCenter}>
         <MenuButton />
         <Text style={styles.title}>Lista de Post</Text>
       </View>
 
-      <View style={styles.filtroContainer}>
+      <hr style={styles.separator}/>
+
+      <View style={[styles.filtroContainer, { marginTop: 16 }]}>
         <TextInput
           placeholder="Filtrar por título"
           value={titulo}
@@ -112,7 +115,6 @@ export default function Gerenciar() {
               pathname: "/editar/[id]",
               params: { id: item._id },
             })}
-            style={styles.card}
           >
 
             <View style={styles.card}>
@@ -133,104 +135,3 @@ export default function Gerenciar() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    display: "flex",
-    flexDirection: "row",
-    padding: 16,
-    alignItems: "center",
-    gap: 8,
-  },
-  title: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    textAlign: "center",
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  loginButton: {
-    backgroundColor: "#01ad09",
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 2,
-  },
-
-  loginText: {
-    color: "#fff",
-    fontWeight: "500",
-  },
-
-  center: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  list: {
-    padding: 16,
-  },
-  card: {
-    backgroundColor: "#fff",
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 12,
-    elevation: 2,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
-  titulo: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 8,
-  },
-  descricao: {
-    fontSize: 14,
-    color: "#555",
-    marginBottom: 12,
-  },
-  footer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  autor: {
-    fontSize: 12,
-    color: "#777",
-  },
-  data: {
-    fontSize: 12,
-    color: "#777",
-  },
-  empty: {
-    textAlign: "center",
-    marginTop: 20,
-    color: "#999",
-  },
-  filtroContainer: {
-    paddingHorizontal: 16,
-    marginBottom: 8,
-  },
-
-  input: {
-    backgroundColor: "#fff",
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 6,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    marginBottom: 8,
-  },
-
-  filtroButton: {
-    backgroundColor: "#444",
-    paddingVertical: 10,
-    borderRadius: 6,
-    alignItems: "center",
-  },
-
-  filtroText: {
-    color: "#fff",
-    fontWeight: "bold",
-  },
-});

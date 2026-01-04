@@ -3,9 +3,10 @@ import {
   ActivityIndicator,
   FlatList,
   Pressable,
-  StyleSheet,
   Text, TextInput, View
 } from "react-native";
+
+import { styles } from "../styles/GlobalStyles";
 
 import { Stack, router } from "expo-router";
 import api from "../services/api";
@@ -127,91 +128,4 @@ export default function Index() {
   );
 }
 
-const styles = StyleSheet.create({
-  header: {
-    padding: 16,
-    alignItems: "flex-end",
-  },
 
-  loginButton: {
-    backgroundColor: "#888",
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 6,
-  },
-
-  loginText: {
-    color: "#fff",
-    fontWeight: "bold",
-  },
-
-  center: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  list: {
-    padding: 16,
-  },
-  card: {
-    backgroundColor: "#fff",
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 12,
-    elevation: 2,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
-  titulo: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 8,
-  },
-  descricao: {
-    fontSize: 14,
-    color: "#555",
-    marginBottom: 12,
-  },
-  footer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  autor: {
-    fontSize: 12,
-    color: "#777",
-  },
-  data: {
-    fontSize: 12,
-    color: "#777",
-  },
-  empty: {
-    textAlign: "center",
-    marginTop: 20,
-    color: "#999",
-  },
-  filtroContainer: {
-    paddingHorizontal: 16,
-    marginBottom: 8,
-  },
-  input: {
-    backgroundColor: "#fff",
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 6,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    marginBottom: 8,
-  },
-  filtroButton: {
-    backgroundColor: "#444",
-    paddingVertical: 10,
-    borderRadius: 6,
-    alignItems: "center",
-  },
-  filtroText: {
-    color: "#fff",
-    fontWeight: "bold",
-  },
-
-});
