@@ -4,12 +4,14 @@ import {
   ActivityIndicator,
   Button,
   FlatList,
+  StyleSheet,
   Text,
   TextInput,
   View,
 } from "react-native";
 import Toast from "react-native-toast-message";
 
+import { MenuButton } from "@/components/MenuButton";
 import { useAuth } from "@/contexts/AuthContext";
 import api from "@/services/api";
 import { Comment } from "@/types/Comment";
@@ -198,7 +200,10 @@ export default function PostScreen() {
 
   return (
     <>
-      <Stack.Screen options={{ title: "Post" }} />
+      <View style={styles.header}>
+        <MenuButton />
+        <Text style={styles.title}>Detalhes</Text>
+      </View>
 
       <View style={{ padding: 16 }}>
         {editandoPost ? (
@@ -315,3 +320,21 @@ export default function PostScreen() {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    display: "flex",
+    flexDirection: "row",
+    padding: 16,
+    alignItems: "center",
+    gap: 8,
+  },
+  title: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+  }
+});

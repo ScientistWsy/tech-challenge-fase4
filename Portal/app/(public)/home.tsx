@@ -9,8 +9,8 @@ import {
   View
 } from "react-native";
 
-import { LogoutButton } from "@/components/logoutButton";
-import { router, Stack } from "expo-router";
+import { MenuButton } from "@/components/MenuButton";
+import { router } from "expo-router";
 import api from "../../services/api";
 import { Post } from "../../types/Post";
 
@@ -64,12 +64,10 @@ export default function Index() {
 
   return (
     <>
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-      />
-      <LogoutButton />
+      <View style={styles.header}>
+        <MenuButton />
+        <Text style={styles.title}>Lista de Post</Text>
+      </View>
 
       <View style={styles.filtroContainer}>
         <TextInput
@@ -124,6 +122,21 @@ export default function Index() {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    display: "flex",
+    flexDirection: "row",
+    padding: 16,
+    alignItems: "center",
+    gap: 8,
+  },
+  title: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
   center: {
     flex: 1,
     justifyContent: "center",

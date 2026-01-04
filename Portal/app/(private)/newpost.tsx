@@ -1,15 +1,16 @@
 import { router } from "expo-router";
 import { useState } from "react";
 import {
-    ActivityIndicator,
-    Alert,
-    Button,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
+  ActivityIndicator,
+  Alert,
+  Button,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
 
+import { MenuButton } from "@/components/MenuButton";
 import { useAuth } from "@/contexts/AuthContext";
 import api from "@/services/api";
 import Toast from "react-native-toast-message";
@@ -65,8 +66,11 @@ export default function NewPostScreen() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Novo Post</Text>
+    <View>
+      <View style={styles.header}>
+        <MenuButton />
+        <Text style={styles.title}>Novo Post</Text>
+      </View>
 
       <TextInput
         style={styles.input}
@@ -87,22 +91,32 @@ export default function NewPostScreen() {
       {loading ? (
         <ActivityIndicator size="large" />
       ) : (
-        <Button title="Publicar" onPress={handleCreatePost} />
+        <View style={styles.button}>
+          <Button title="Publicar" onPress={handleCreatePost} />
+        </View>
       )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
+  header: {
+    display: "flex",
+    flexDirection: "row",
+    padding: 16,
+    alignItems: "center",
+    gap: 8,
   },
   title: {
-    fontSize: 22,
-    fontWeight: "bold",
-    marginBottom: 24,
+    position: "absolute",
+    left: 0,
+    right: 0,
     textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  container: {
+    padding: 16
   },
   input: {
     borderWidth: 1,
@@ -110,9 +124,14 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     padding: 12,
     marginBottom: 12,
+    marginHorizontal: 16
   },
   textArea: {
     height: 100,
     textAlignVertical: "top",
   },
+  button: {
+    marginTop: 0,
+    margin: 16
+  }
 });

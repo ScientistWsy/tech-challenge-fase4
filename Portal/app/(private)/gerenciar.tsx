@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -9,10 +9,23 @@ import {
   View
 } from "react-native";
 
-import { LogoutButton } from "@/components/logoutButton";
-import { Stack, router } from "expo-router";
+import { useNavigation } from "@react-navigation/native";
+import { router } from "expo-router";
+import { MenuButton } from "../../components/MenuButton";
 import api from "../../services/api";
 import { Post } from "../../types/Post";
+
+export function Home() {
+  const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => <MenuButton />,
+    });
+  }, []);
+
+  return null;
+}
 
 export default function Gerenciar() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -64,20 +77,9 @@ export default function Gerenciar() {
 
   return (
     <>
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-      />
-
       <View style={styles.header}>
-        <LogoutButton />
-        <Pressable style={styles.loginButton}
-          onPress={() => router.push("/newpost")}
-        >
-          <Text style={styles.loginText}
-          >NOVO POST</Text>
-        </Pressable>
+        <MenuButton />
+        <Text style={styles.title}>Lista de Post</Text>
       </View>
 
       <View style={styles.filtroContainer}>
@@ -136,12 +138,18 @@ const styles = StyleSheet.create({
   header: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "flex-end",
     padding: 16,
     alignItems: "center",
     gap: 8,
   },
-
+  title: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
   loginButton: {
     backgroundColor: "#01ad09",
     paddingVertical: 8,
