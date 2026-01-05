@@ -8,11 +8,11 @@ import {
   View
 } from "react-native";
 
-import { styles } from "../../styles/GlobalStyles";
-
 import { MenuButton } from "@/components/MenuButton";
+import { styles as globalStyles } from "@/styles/GlobalStyles";
 import { router } from "expo-router";
 import api from "../../services/api";
+import { styles } from "../../styles/GlobalStyles";
 import { Post } from "../../types/Post";
 
 export default function Index() {
@@ -69,6 +69,8 @@ export default function Index() {
         <MenuButton />
         <Text style={styles.title}>Lista de Post</Text>
       </View>
+
+      <hr style={globalStyles.separator}/>
 
       <View style={styles.filtroContainer}>
         <TextInput

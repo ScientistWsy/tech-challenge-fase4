@@ -47,8 +47,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   async function signIn(email: string, senha: string): Promise<void> {
-    setLoading(true);
-
     try {
       const response = await api.post<LoginResponse>(
         "/auth/login",
@@ -68,8 +66,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         ["@nome", nome],
         ["@cargo", cargo],
       ]);
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      throw error;
     }
   }
 

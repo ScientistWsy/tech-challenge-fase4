@@ -1,3 +1,4 @@
+import { styles } from "@/styles/GlobalStyles";
 import { Drawer } from "expo-router/drawer";
 import { Text, TouchableOpacity, View } from "react-native";
 import { useAuth } from "../../contexts/AuthContext";
@@ -22,27 +23,34 @@ function CustomDrawerContent(props: any) {
         onPress={() => props.navigation.navigate("gerenciar")}
         style={{ marginBottom: 15 }}
       >
-        <Text>🏠 Home</Text>
+        <Text style={styles.itemMenu}>Home</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
        onPress={() => props.navigation.navigate("newpost")}
        style={{ marginBottom: 15 }}
       >
-      <Text>📋 Criar Post</Text>
+      <Text style={styles.itemMenu}>Novo Post</Text>
       </TouchableOpacity>
       
       <TouchableOpacity
-        onPress={() => props.navigation.navigate("cadastrar")}
+        onPress={() => props.navigation.navigate("register")}
         style={{ marginBottom: 15 }}
       >
-        <Text>👤 Usuários</Text>
+        <Text style={styles.itemMenu}>Criar Novo Usuário</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate("professores")}
+        style={{ marginBottom: 15 }}
+      >
+        <Text style={styles.itemMenu}>Gerenciar Usuários</Text>
       </TouchableOpacity>
 
       {/* Logout */}
       <View style={{ flex: 1, justifyContent: "flex-end" }}>
         <TouchableOpacity onPress={signOut}>
-          <Text style={{ color: "red" }}>🚪: Sair</Text>
+          <Text style={{ color: "red", fontSize: 18, fontWeight: "500", }}>Sair</Text>
         </TouchableOpacity>
       </View>
         </View>

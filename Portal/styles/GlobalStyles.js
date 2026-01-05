@@ -5,6 +5,18 @@ export const styles = StyleSheet.create({
     padding: 16,
     alignItems: "flex-end",
   },
+  containerNewUser: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 24,
+    marginBottom: 60,
+  },
+  titleNewUser: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 24,
+    textAlign: "center",
+  },
   loginButton: {
     backgroundColor: "#01ad09",
     paddingVertical: 8,
@@ -137,5 +149,35 @@ export const styles = StyleSheet.create({
     borderBottomColor: "#000",
     marginVertical: 16,
     width: "90%",
+  },
+  field: {
+    marginBottom: 16,
+  },
+  label: {
+    marginLeft: 6,
+    marginBottom: 6,
+    fontWeight: "600",
+    color: "#333",
+  },
+  pickerWrapper: {
+    borderWidth: 0,
+    borderColor: "#ddd",
+    borderRadius: 30,
+    backgroundColor: "#fff",
+  },
+  picker: {
+    height: 40,
+    paddingHorizontal: 7,
+    borderRadius: 5,
+    backgroundColor: "#f2f2f2",
+    borderColor: "#ccc",
+  },
+  itemMenu: {
+    fontSize: 16,
+    color: "#333",
+    fontWeight: 500, 
+    borderBottomWidth: 1,
+    borderBottomColor: "#f2f2f2f2",
+    paddingBottom: 15,
   },
 });
