@@ -47,7 +47,7 @@ Aplicativo mobile desenvolvido em React Native com foco em gerenciamento de post
 - Controle de autenticação e permissões
 - Estilização baseada em layout definido pelo grupo
 
-## Arquitetura da Aplicação - Em desenvolvimento...
+## Arquitetura da Aplicação
 
 O projeto segue uma arquitetura baseada em separação de responsabilidades:
 
@@ -108,7 +108,7 @@ O gerenciamento de estado da aplicação é feito utilizando a Context API do Re
 - Lista de posts
 - Permissões (Aluno ou Professor)
 
-## Integração com Back-End - Em desenvolvimento...
+## Integração com Back-End
 
 A comunicação com o back-end é realizada através de uma API REST.
 
