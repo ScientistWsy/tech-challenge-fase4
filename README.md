@@ -1,6 +1,6 @@
 # Portal de Postagens
 
-Aplicativo mobile desenvolvido em React Native com foco em gerenciamento de posts, alunos e professores, integrando-se a uma API REST para autenticação e controle de permissões.
+O Portal de Postagens é um aplicativo mobile desenvolvido em React Native, com foco no gerenciamento de postagens educacionais, usuários (alunos e professores) e comentários. A aplicação integra-se a uma API REST para autenticação, autorização e persistência dos dados, oferecendo diferentes fluxos e permissões de uso conforme o perfil do usuário.
 
 ## Tecnologias Utilizadas
 
@@ -129,6 +129,26 @@ A estilização do aplicativo segue o layout definido pelo grupo - minimalista, 
 - Consistência visual
 - Responsividade
 - Uso de cores básicas e tipografia padronizadas
+
+## Experiências e Desafios Enfrentados
+
+Durante o desenvolvimento do projeto, a equipe enfrentou diversos desafios técnicos e organizacionais, que contribuíram significativamente para o aprendizado prático.
+
+### Principais Desafios
+
+- Controle de permissões: garantir que cada perfil tivesse acesso apenas às funcionalidades permitidas exigiu atenção tanto no front-end quanto na integração com a API.
+- Organização de rotas: a separação entre rotas públicas, privadas e autenticadas demandou estudo e adaptação ao modelo do Expo Router.
+- Gerenciamento de estado global: estruturar corretamente o contexto de autenticação para evitar inconsistências durante a navegação.
+- Integração com a API: ajustes frequentes nos endpoints e tratamento de erros foi realizado para garantir uma boa experiência do usuário.
+
+### Aprendizados
+
+- Melhor compreensão da arquitetura de aplicações mobile
+- Uso eficiente de Hooks e Context API
+- Importância de documentação clara e padronizada
+- Trabalho em equipe e divisão de responsabilidades
+
+Esses desafios contribuíram para a evolução técnica da equipe e para a entrega de uma aplicação mais robusta.
 
 ## Setup do Projeto
 
