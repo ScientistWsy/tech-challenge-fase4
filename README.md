@@ -80,7 +80,6 @@ tech-challenge-fase4/
 │   ├── styles/
 │   │   ├── GlobalStyles.js            # Configurações de Estilos das páginas e componentes
 │   ├── types/               
-│   ├── .gitignore               -- Remover arquivo
 │   ├── app.json
 │   ├── eslint.config.js
 │   ├── package-lock.json
