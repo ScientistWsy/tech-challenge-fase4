@@ -1,3 +1,21 @@
+## Índice
+
+- [Visão Geral](#portal-de-postagens)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Requisitos Técnicos](#requisitos-técnicos)
+- [Arquitetura da Aplicação](#arquitetura-da-aplicação)
+  - [Estrutura de Pastas](#estrutura-de-pastas)
+  - [Principais Decisões Arquiteturais](#principais-decisões-arquiteturais)
+- [Gerenciamento de Estado](#gerenciamento-de-estado)
+- [Integração com Back-End](#integração-com-back-end)
+- [Controle de Permissões](#controle-de-permissões)
+- [Estilização](#estilização)
+- [Guia de Uso da Aplicação](#guia-de-uso-da-aplicação)
+- [Experiências e Desafios Enfrentados](#experiências-e-desafios-enfrentados)
+- [Setup do Projeto](#setup-do-projeto)
+- [Melhorias Futuras](#melhorias-futuras)
+- [Autores](#autores)
+
 # Portal de Postagens
 
 O Portal de Postagens é um aplicativo mobile desenvolvido em React Native, com foco no gerenciamento de postagens educacionais, usuários (alunos e professores) e comentários. A aplicação integra-se a uma API REST para autenticação, autorização e persistência dos dados, oferecendo diferentes fluxos e permissões de uso conforme o perfil do usuário.
@@ -22,7 +40,9 @@ O Portal de Postagens é um aplicativo mobile desenvolvido em React Native, com 
 
 ## Arquitetura da Aplicação
 
-O projeto segue uma arquitetura baseada em separação de responsabilidades:
+A aplicação segue uma arquitetura baseada em separação de responsabilidades, visando facilitar a manutenção, escalabilidade e reutilização de código.
+
+### Estrutura de Pastas
 
 ```bash
 tech-challenge-fase4/
@@ -71,6 +91,12 @@ tech-challenge-fase4/
 └── README.md
 ```
 
+### Principais Decisões Arquiteturais
+
+- Expo Router para organização das rotas por contexto (público, autenticado e privado)
+- Context API para gerenciamento global de autenticação e permissões
+- Services para centralizar a comunicação com a API
+- Componentização para reutilização de elementos visuais e lógicos
 
 ## Gerenciamento de Estado
 
@@ -171,22 +197,14 @@ npm install
 npx expo start
 ```
 
-### Guia de Uso
+### Guia de Uso da Aplicação
 
-Fluxo do usuário:
-
-```md
-## Guia de Uso
-
-1. O usuário realiza login
-2. O sistema identifica se é aluno ou professor
-3. Professores podem criar e gerenciar posts
-4. Alunos podem visualizar os posts disponíveis
-5. Professores podem criar e gerenciar os comentários de um post
-6. Alunos podem criar comentários e gerenciar os seus próprios comentários
-7. Professores podem criar e gerenciar usuários
-8. Alunos podem criar e gerenciar usuários que são alunos
-```
+1. O usuário realiza login;
+2. O sistema identifica o perfil (Aluno ou Professor);
+3. Professores acessam o painel de gerenciamento de posts e usuários;
+4. Alunos visualizam os posts disponíveis;
+5. Comentários podem ser adicionados conforme as permissões;
+6. Usuários podem ser gerenciados de acordo com o perfilais robusta.
 
 ## Melhorias Futuras
 
