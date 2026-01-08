@@ -71,7 +71,7 @@ tech-challenge-fase4/
 │   │   │   ├── [id].tsx               # Página pública - Detalhes de uma Postagem
 │   │   ├── _layout.tsx                # Configuração das páginas públicas
 │   │   ├── index.tsx                  # Página pública - Lista de Postagens
-│   ├── assets/images            -- Remover pasta
+│   ├── assets/images            
 │   ├── components/                    # Componentes do Projeto
 │   ├── contexts/
 │   │   ├── AuthConstext.tsx           # Configurações de Autenticação                 
