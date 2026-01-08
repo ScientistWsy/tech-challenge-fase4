@@ -74,7 +74,7 @@ tech-challenge-fase4/
 │   ├── assets/images            
 │   ├── components/                    # Componentes do Projeto
 │   ├── contexts/
-│   │   ├── AuthConstext.tsx           # Configurações de Autenticação                 
+│   │   ├── AuthContext.tsx           # Configurações de Autenticação                 
 │   ├── services/
 │   │   ├── api.js                     # Configurações de comunicação com API
 │   ├── styles/
