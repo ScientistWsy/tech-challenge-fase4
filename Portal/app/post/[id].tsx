@@ -1,11 +1,14 @@
-import { Stack, useLocalSearchParams } from "expo-router";
+import { router, Stack, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
+  Pressable,
   Text,
   View,
 } from "react-native";
+
+import { styles } from "../../styles/GlobalStyles";
 
 import api from "../../services/api";
 import { Comment } from "../../types/Comment";
@@ -60,7 +63,20 @@ export default function PostScreen() {
 
   return (
     <>
-      <Stack.Screen options={{ title: "Post" }} />
+      <Pressable
+        onPress={() => router.back()}
+        style={{
+          marginBottom: 16,
+          padding: 8,
+          alignSelf: "flex-start",
+        }}
+      >
+        <Text style={styles.backButton}>
+          Voltar
+        </Text>
+      </Pressable>
+
+      <hr style={styles.separator}/>
 
       <View style={{ padding: 16 }}>
         <Text style={{ fontSize: 22, fontWeight: "bold" }}>

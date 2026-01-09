@@ -180,4 +180,11 @@ export const styles = StyleSheet.create({
     borderBottomColor: "#f2f2f2f2",
     paddingBottom: 15,
   },
+  backButton: {
+    padding: 10,
+    paddingBottom: 0,
+    fontSize: 20,
+    fontWeight: 500,
+    color: "blue",
+  }
 });

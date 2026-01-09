@@ -8,7 +8,7 @@ import {
 
 import { styles } from "../styles/GlobalStyles";
 
-import { Stack, router } from "expo-router";
+import { router } from "expo-router";
 import api from "../services/api";
 import { Post } from "../types/Post";
 
@@ -61,12 +61,6 @@ export default function Index() {
 
   return (
     <>
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-      />
-
       <View style={styles.header}>
         <Pressable style={styles.loginButton}
           onPress={() => router.push("/login")}
