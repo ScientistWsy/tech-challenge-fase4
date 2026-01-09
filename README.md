@@ -213,5 +213,5 @@ npx expo start
 
 ## Autores
 
-- Anderson Rodrigo
+- Anderson Rodrigo Barreira
 - Wesley Silveira dos Santos
